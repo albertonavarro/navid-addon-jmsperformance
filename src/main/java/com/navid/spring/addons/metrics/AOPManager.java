@@ -39,6 +39,10 @@ public class AOPManager {
         }
     }
 
+    @Pointcut("@within(com.navid.spring.addons.metrics.PerformanceMetric)")
+    private void anyPerformanceMetricAnnotated() {
+    }
+
     @Pointcut("@within(javax.jws.WebService)")
     private void anyWebService() {
     }
@@ -55,7 +59,7 @@ public class AOPManager {
     private void anyService() {
     }
 
-    @Around("anyWebService() || anyController() || anyRepository() || anyService()")
+    @Around("anyWebService() || anyController() || anyRepository() || anyService() || anyPerformanceMetricAnnotated()")
     public Object logServiceAccess(ProceedingJoinPoint joinPoint) throws Throwable {
         LOG_METRICS.info("{} {}", "STARTING", joinPoint.getSignature());
         StopWatch monitor = new StopWatch();
