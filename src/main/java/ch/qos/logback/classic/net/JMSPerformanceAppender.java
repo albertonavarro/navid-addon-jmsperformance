@@ -26,9 +26,9 @@ public class JMSPerformanceAppender extends JMSQueueAppender {
             MapMessage msg = getQueueSession().createMapMessage();
             msg.setLong("timestamp", event.getTimeStamp());
             msg.setString("status", event.getArgumentArray()[0].toString());
-            msg.setString("duration", event.getArgumentArray()[1].toString());
+            msg.setString("signature", event.getArgumentArray()[1].toString());
             if(event.getArgumentArray().length==3) {
-                msg.setString("signature", event.getArgumentArray()[2].toString());
+                msg.setString("duration", event.getArgumentArray()[2].toString());
             }
 
             for(Map.Entry<String,String> mdc : event.getMDCPropertyMap().entrySet()) {

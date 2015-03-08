@@ -75,7 +75,7 @@ public class AOPManager {
             error = true;
             throw e;
         } finally {
-            LOG_METRICS.info("{} {} {}", error ? "ERROR" : "SUCCESS", monitor.getTotalTimeSeconds(), joinPoint.getSignature());
+            LOG_METRICS.info("{} {} {}", error ? "ERROR" : "SUCCESS", joinPoint.getSignature(), monitor.getTotalTimeSeconds());
         }
     }
 
