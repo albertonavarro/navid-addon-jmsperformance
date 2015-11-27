@@ -22,12 +22,6 @@
         </repository>
     </distributionManagement>
 
-    <server>
-        <id>bintray</id>
-        <username>{bintray-user}</username>
-        <password>{bintray-api-key}</password>
-    </server>
-
     <build>
         <plugins>
             <plugin>
