@@ -1,0 +1,53 @@
+plugins {
+    id "com.jfrog.bintray" version "1.4"
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.navid.spring'
+version = '1.2.0'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+    compile group: 'org.springframework', name: 'spring-context', version:'4.1.4.RELEASE'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version:'1.1.2'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.8.4'
+    compile group: 'org.apache.geronimo.specs', name: 'geronimo-jms_1.1_spec', version:'1.1.1'
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['MyPublication']
+    pkg {
+        repo = 'maven'
+        name = 'addon-jms-performance'
+        userOrg = 'albertonavarro'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/albertonavarro/navid-addon-jmsperformance.git'
+        version {
+            name = "${project.version}"
+            desc = "${project.version}"
+            released  = new Date()
+            vcsTag = "${project.version}"
+        }
+    }
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'com.navid.spring'
+            artifactId 'addon-jms-performance'
+            version "${project.version}"
+        }
+    }
+}
