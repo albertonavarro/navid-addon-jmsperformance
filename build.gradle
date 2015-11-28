@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group = 'com.navid.spring'
-version = '1.2.1'
+version = '1.2.2'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -65,6 +65,8 @@ publishing {
             groupId 'com.navid.spring'
             artifactId 'addon-jms-performance'
             version "${project.version}"
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
 }
